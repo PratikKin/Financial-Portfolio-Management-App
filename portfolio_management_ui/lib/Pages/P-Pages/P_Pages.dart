@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_management_ui/Pages/P-Pages/F.D.dart';
-import 'package:portfolio_management_ui/Pages/P-Pages/RI.dart';
-import 'package:portfolio_management_ui/Pages/P-Pages/Stocks.dart';
+import 'package:portfolio_management_ui/Pages/P-Pages/Add_Portfolio/F.D./F.D.dart';
+import 'package:portfolio_management_ui/Pages/P-Pages/Add_Portfolio/R.E./RE.dart';
+import 'package:portfolio_management_ui/Pages/P-Pages/Add_Portfolio/Stocks/Stocks.dart';
 
 import '../../Design/Indicator_size.dart';
 

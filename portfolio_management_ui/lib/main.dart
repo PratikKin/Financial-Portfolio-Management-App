@@ -54,6 +54,16 @@ class MyApp extends StatelessWidget {
             fontFamily: 'RobotoSerif',
             color: Colors.black,
           ),
+          labelLarge: TextStyle(
+            fontSize: 14,
+            fontFamily: 'RobotoSerif',
+            color: Colors.black,
+          ),
+          labelMedium: TextStyle(
+            fontSize: 14,
+            fontFamily: 'RobotoSerif',
+            color: Colors.black,
+          ),
         ),
       ),
       debugShowCheckedModeBanner: false,
