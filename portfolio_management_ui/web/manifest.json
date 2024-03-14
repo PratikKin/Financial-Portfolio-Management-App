@@ -1,6 +1,6 @@
 {
-    "name": "portfolio_management_ui",
-    "short_name": "portfolio_management_ui",
+    "name": "mone_age",
+    "short_name": "mone_age",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

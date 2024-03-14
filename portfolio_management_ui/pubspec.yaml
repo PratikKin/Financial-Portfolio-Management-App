@@ -1,4 +1,4 @@
-name: portfolio_management_ui
+name: mone_age
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -34,14 +34,17 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons:
+  cupertino_icons: ^1.0.2
   convex_bottom_bar:
   font_awesome_flutter:
   get:
+  flutter_expandable_fab:
+  glass_kit:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -63,7 +66,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/app.svg
     - assets/
   #   - images/a_dot_ham.jpeg
 
@@ -82,6 +84,14 @@ flutter:
     - family: RobotoSerif
       fonts:
         - asset: fonts/RobotoSerif_Regular.ttf
+
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

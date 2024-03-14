@@ -1,73 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:portfolio_management_ui/Pages/BasePage.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mone_age/BasePage.dart';
+import 'package:mone_age/MainPages/HomePage.dart';
+import 'package:mone_age/Portfolio_Pages/FD/F.D.dart';
+import 'package:mone_age/Portfolio_Pages/Real%20Estate/RE.dart';
+import 'package:mone_age/Portfolio_Pages/Real%20Estate/addRE.dart';
+import 'package:mone_age/Portfolio_Pages/Stocks/Stocks.dart';
+import 'package:mone_age/Portfolio_Pages/Stocks/addStocks.dart';
+import 'package:mone_age/Sign-In-Up/SignIn.dart';
+import 'package:mone_age/Sign-In-Up/SignUp.dart';
+
+import 'Portfolio_Pages/FD/addFD.dart';
+import 'Portfolio_Pages/portfolio_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MoneAge());
 }
 
-class MyApp extends StatelessWidget {
+class MoneAge extends StatelessWidget {
+  const MoneAge({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
-        textTheme: TextTheme(
-          displayLarge: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-          displayMedium: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-          bodyLarge: TextStyle(
-            fontSize: 16,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-          bodyMedium: TextStyle(
-            fontSize: 14,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-          titleLarge: TextStyle(
-            fontSize: 14,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-          titleMedium: TextStyle(
-            fontSize: 14,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-          headlineMedium: TextStyle(
-            fontSize: 14,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-          headlineLarge: TextStyle(
-            fontSize: 14,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-          labelLarge: TextStyle(
-            fontSize: 14,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-          labelMedium: TextStyle(
-            fontSize: 14,
-            fontFamily: 'RobotoSerif',
-            color: Colors.black,
-          ),
-        ),
+        fontFamily: "Poppins",
       ),
       debugShowCheckedModeBanner: false,
-      home: BasePage(),
+      // home: BasePage(),
+      initialRoute: "SignUp",
+      routes: {
+        "Base": (route) => BasePage(),
+        "Home": (route) => HomePage(),
+        "SignIn": (route) => SignIn(),
+        "SignUp": (route) => SignUpPage(),
+        "F.D.": (route) => FD(),
+        "addFD": (route) => addFD(),
+        "Stocks": (route) => Stocks(),
+        "addStocks": (route) => addStocks(),
+        "R.E.": (route) => RE(),
+        "addRE": (route) => addRE(),
+        "Portfolio": (route) => MainP_Pages(),
+      },
     );
   }
 }
