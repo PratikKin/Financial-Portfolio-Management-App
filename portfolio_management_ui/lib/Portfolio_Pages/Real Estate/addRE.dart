@@ -14,6 +14,17 @@ class _addREState extends State<addRE> {
   TextEditingController _notes = TextEditingController();
 
   bool isTap = false;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _propertyName.dispose();
+    amtInvested.dispose();
+    _buyDate.dispose();
+    _notes.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

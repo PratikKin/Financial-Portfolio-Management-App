@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
+import 'package:mone_age/Portfolio_Pages/FD/Calculator/FD_Calculator.dart';
 
-import '/Features/selectBottomSheet.dart';
+import '../../Features/selectBottomSheet.dart';
 import 'addFD.dart';
 
 class FD extends StatefulWidget {
@@ -46,7 +47,9 @@ class _FDState extends State<FD> {
             FloatingActionButton.small(
               heroTag: null,
               child: const Icon(Icons.calculate_outlined),
-              onPressed: () {},
+              onPressed: () {
+                showFDCalculator(context);
+              },
             ),
           ],
         ),

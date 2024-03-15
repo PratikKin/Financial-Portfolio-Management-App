@@ -15,6 +15,18 @@ class _addStocksState extends State<addStocks> {
   TextEditingController _notes = TextEditingController();
 
   bool isTap = false;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _stockName.dispose();
+    _quantityBought.dispose();
+    _amtInvested.dispose();
+    _investDate.dispose();
+    _notes.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

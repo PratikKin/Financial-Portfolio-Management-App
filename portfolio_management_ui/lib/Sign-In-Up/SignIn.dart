@@ -110,7 +110,7 @@ class _SignInState extends State<SignIn> {
                     onTap: () {
                       Navigator.pushNamed(
                         context,
-                        "SignIn",
+                        "Sign Up",
                       );
                     },
                     child: const Text(

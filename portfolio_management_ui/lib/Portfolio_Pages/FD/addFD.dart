@@ -20,6 +20,19 @@ class _addFDState extends State<addFD> {
   TextEditingController _notes = TextEditingController();
 
   bool isTap = false;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _bankName.dispose();
+    _amtDeposited.dispose();
+    _interestRate.dispose();
+    _investDate.dispose();
+    _maturityDate.dispose();
+    _notes.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,10 +46,6 @@ class _addFDState extends State<addFD> {
             ),
             Text(
               'Add New F.D.',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
             ),
             GestureDetector(
               onTap: () {

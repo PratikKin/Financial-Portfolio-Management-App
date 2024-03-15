@@ -27,7 +27,7 @@ class MoneAge extends StatelessWidget {
         fontFamily: "Poppins",
       ),
       debugShowCheckedModeBanner: false,
-      // home: BasePage(),
+      // home: FD_Calculator(),
       initialRoute: "SignUp",
       routes: {
         "Base": (route) => BasePage(),
