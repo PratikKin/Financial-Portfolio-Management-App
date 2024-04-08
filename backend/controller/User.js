@@ -47,17 +47,13 @@ exports.getUser =(req, res, next)=>{
     let name = req.body.name;
     let email = req.body.email;
     let password = req.body.password;
-    let dob = req.body.dob;
-    let confirmPassword= req.body.confirmPassword;
 
     name = name.trim();
     email = email.trim();
     password = password.trim();
-    confirmPassword = confirmPassword.trim();
-    dob = dob.trim();
     
 
-    if(name == "" || email == ""|| password == "" || dob ==""){
+    if(name == "" || email == ""|| password == ""){
         res.json({
             status:"Failed",
             message:"Empty input field"
@@ -72,21 +68,13 @@ exports.getUser =(req, res, next)=>{
             status:"Failed",
             message:"Invalid email is entered"
         })
-    }else if(!new Date(dob).getTime()){
-        res.json({
-            status:"Failed",
-            message:"Invalid date of birth is entered"
-        })
-    }else if(password<8){
+    }
+    else if(password<8){
         res.json({
             message:"Password Must be 8 character"
         })
-    }else if(password != confirmPassword){
-        res.json({
-            status:"Failed",
-            message:"Password do not match"
-        })
-    }else{
+    }
+    else{
         //checking user already exits
         User.find({email}).then((result)=>{
             if(result.length){
@@ -103,17 +91,12 @@ exports.getUser =(req, res, next)=>{
                         name,
                         email,
                         password:hashpassword,
-                        dob,
+                        // dob,
                         verified:false
                     })
 
                     newUser.save().then(result =>{
-                        // handle verification email
                         sendVerificationEmail(result, res)
-                        // res.status(200).json({
-                        //     message:"SigUp Successfully",
-                        //     data:result
-                        // })
                     })
                     .catch(err => {
                         console.log(err)

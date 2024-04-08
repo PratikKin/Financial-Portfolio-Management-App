@@ -15,7 +15,7 @@ const UserSchema = new Schema({
         type:String,
         require:true
     },
-    dob:Date,
+    // dob:Date,
     verified:Boolean,
 })
 
