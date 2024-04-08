@@ -21,7 +21,7 @@ require("dotenv").config();
 
 //path for static verified page;
 const path = require("path");
-const { PassThrough } = require("nodemailer/lib/xoauth2");
+// const { PassThrough } = require("nodemailer/lib/xoauth2");
 
 // nodemailer transporter
 let transporter = nodemailer.createTransport({
@@ -48,11 +48,6 @@ exports.getUser =(req, res, next)=>{
     let email = req.body.email;
     let password = req.body.password;
 
-    name = name.trim();
-    email = email.trim();
-    password = password.trim();
-    
-
     if(name == "" || email == ""|| password == ""){
         res.json({
             status:"Failed",
@@ -62,11 +57,6 @@ exports.getUser =(req, res, next)=>{
         res.json({
             status:"Failed",
             message:"Invalid name is entered"
-        })
-    }else if(!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
-        res.json({
-            status:"Failed",
-            message:"Invalid email is entered"
         })
     }
     else if(password<8){
@@ -126,7 +116,7 @@ exports.getUser =(req, res, next)=>{
 // send verification Email
 const sendVerificationEmail = ({_id, email},res)=>{
     // url to be used in email
-    const currentUrl = "http://localhost:5000/";
+    const currentUrl = "http://10.0.12.188:5000/";
 
     const uniqueString = uuidv4() + _id;
 
@@ -406,9 +396,6 @@ exports.getNewPassword = (req,res, nest)=>{
 exports.logInUser =(req, res, next)=>{
     let email = req.body.email;
     let password = req.body.password;
-
-    email = email.trim();
-    password = password.trim();
 
     if(email == "" || password == ""){
         res.json({
