@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../Portfolio Components/addButton.dart';
+import '../Portfolio Components/addPortFolioTextFields.dart';
+
 class addStocks extends StatefulWidget {
   const addStocks({super.key});
 
@@ -8,11 +11,12 @@ class addStocks extends StatefulWidget {
 }
 
 class _addStocksState extends State<addStocks> {
-  TextEditingController _stockName = TextEditingController();
-  TextEditingController _quantityBought = TextEditingController();
-  TextEditingController _amtInvested = TextEditingController();
-  TextEditingController _investDate = TextEditingController();
-  TextEditingController _notes = TextEditingController();
+  final TextEditingController _stockName = TextEditingController();
+  final TextEditingController _stockSym = TextEditingController();
+  final TextEditingController _quantityBought = TextEditingController();
+  final TextEditingController _amtInvested = TextEditingController();
+  final TextEditingController _investDate = TextEditingController();
+  final TextEditingController _notes = TextEditingController();
 
   bool isTap = false;
 
@@ -20,6 +24,7 @@ class _addStocksState extends State<addStocks> {
   void dispose() {
     // TODO: implement dispose
     _stockName.dispose();
+    _stockSym.dispose();
     _quantityBought.dispose();
     _amtInvested.dispose();
     _investDate.dispose();
@@ -40,7 +45,6 @@ class _addStocksState extends State<addStocks> {
             ),
             Text(
               'Add New Stocks',
-              style: TextStyle(color: Colors.black),
             ),
             GestureDetector(
               onTap: () {
@@ -49,7 +53,7 @@ class _addStocksState extends State<addStocks> {
               },
               child: Icon(
                 Icons.close,
-                color: Colors.black,
+                color: Colors.white60,
               ),
             ),
           ],
@@ -63,22 +67,33 @@ class _addStocksState extends State<addStocks> {
           child: Column(
             children: [
               SizedBox(height: 20),
-              _returnTextField(_stockName, 'Stock Name'),
+              returnTextField(
+                  _stockName, 'Stock Name', TextInputType.text, 0.0),
               SizedBox(height: 20),
-              _returnTextField(_quantityBought, 'Quantity Bought'),
+              returnTextField(
+                  _stockSym, 'Stock Symbol', TextInputType.text, 0.0),
               SizedBox(height: 20),
-              _returnTextField(_amtInvested, 'Amount Invested'),
+              returnTextField(_quantityBought, 'Quantity Bought',
+                  TextInputType.numberWithOptions(decimal: true), 0.0),
               SizedBox(height: 20),
-              _returnTextField(_investDate, 'Invested Date'),
+              returnTextField(_amtInvested, 'Amount Invested',
+                  TextInputType.numberWithOptions(decimal: true), 0.0),
               SizedBox(height: 20),
-              _returnTextField(_notes, 'Notes'),
+              returnTextField(
+                  _investDate, 'Invested Date', TextInputType.datetime, 0.0),
+              SizedBox(height: 20),
+              returnTextField(_notes, 'Notes', TextInputType.multiline, 100),
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Notify Me."),
+                  Text(
+                    "Notify Me.",
+                    style: TextStyle(color: Colors.white38),
+                  ),
                   Switch(
-                    activeColor: Color(0xff0F37AD),
+                    inactiveThumbColor: Colors.white38,
+                    activeColor: Color(0xff0fad6b),
                     value: isTap,
                     onChanged: (value) {
                       setState(
@@ -89,28 +104,31 @@ class _addStocksState extends State<addStocks> {
                     },
                   ),
                 ],
-              )
+              ),
+              addButton(
+                () {
+                  setState(
+                    () {
+                      // Stocks_List.value.add(
+                      //   stocksCard(
+                      //     _stockName.text,
+                      //     _stockSym.text,
+                      //     _amtInvested.text,
+                      //     // data of interest rate is to be fetched from backend
+                      //     () {},
+                      //   ),
+                      // );
+                      // Stocks_List.value = List.from(Stocks_List.value);
+                    },
+                  );
+                  Navigator.of(context).pop();
+                },
+                "Add F.D.",
+              ),
             ],
           ),
         ),
       ),
     );
   }
-}
-
-Widget _returnTextField(TextEditingController _controller, String hintText) {
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(15.0),
-      border: Border.all(color: Colors.black),
-    ),
-    padding: EdgeInsets.symmetric(horizontal: 18.0),
-    child: TextField(
-      controller: _controller,
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        hintText: hintText,
-      ),
-    ),
-  );
 }

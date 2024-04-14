@@ -35,12 +35,26 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  connectivity_plus:
+  dropdown_model_list:
+  flutter_secure_storage:
+  calendar_date_picker2:
   convex_bottom_bar:
   font_awesome_flutter:
   get:
   flutter_expandable_fab:
   glass_kit:
   drop_down_list_menu:
+  http:
+  top_snackbar_flutter:
+  shared_preferences:
+  loading_animation_widget:
+  candlesticks:
+  simple_candlestick_chart:
+  flutter_simple_candlesticks:
+  quickalert:
+  carousel_slider:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -88,6 +102,15 @@ flutter:
     - family: Poppins
       fonts:
         - asset: fonts/Poppins-Regular.ttf
+
+    - family: Poppins-Light
+      fonts:
+        - asset: fonts/Poppins-Light.ttf
+
+    - family: Poppins-Thin
+      fonts:
+        - asset: fonts/Poppins-Thin.ttf
+
   # fonts:
   #   - family: Schyler
   #     fonts:

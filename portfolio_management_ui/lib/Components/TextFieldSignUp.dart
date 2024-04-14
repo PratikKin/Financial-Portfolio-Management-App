@@ -4,11 +4,13 @@ class TextFieldSignUp extends StatefulWidget {
   final TextEditingController controller;
   final IconData iconUsed;
   final String hintText;
+  final TextInputType keyBoard;
   const TextFieldSignUp({
     Key? key, // Corrected the key parameter
     required this.controller,
     required this.iconUsed,
     required this.hintText,
+    required this.keyBoard,
   }) : super(
             key: key); // Used super(key: key) to pass the key to the superclass
 
@@ -27,6 +29,7 @@ class _TextFieldSignUpState extends State<TextFieldSignUp> {
       ),
       child: TextField(
         controller: widget.controller,
+        keyboardType: widget.keyBoard,
         decoration: InputDecoration(
           border: InputBorder.none,
           prefixIcon: Icon(

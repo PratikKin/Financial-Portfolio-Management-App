@@ -37,7 +37,7 @@ class _addREState extends State<addRE> {
               width: 15.0,
             ),
             Text(
-              'Add New Stocks',
+              'Add New Real Estates',
               style: TextStyle(color: Colors.black),
             ),
             GestureDetector(

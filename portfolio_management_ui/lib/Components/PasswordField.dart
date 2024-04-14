@@ -7,7 +7,7 @@ class PasswordField extends StatefulWidget {
   final String hintText;
   final bool obscureText;
   const PasswordField({
-    Key? key, // Corrected the key parameter
+    Key? key,
     required this.controller,
     required this.iconUsed,
     required this.hintText,

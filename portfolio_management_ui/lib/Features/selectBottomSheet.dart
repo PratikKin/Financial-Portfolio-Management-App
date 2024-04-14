@@ -22,6 +22,7 @@ void showAddPortfolio(BuildContext ctx, int index) {
     },
     useSafeArea: true,
     isScrollControlled: true,
+    useRootNavigator: true,
     clipBehavior:
         Clip.antiAliasWithSaveLayer, // Clip the content to rounded corners
   );

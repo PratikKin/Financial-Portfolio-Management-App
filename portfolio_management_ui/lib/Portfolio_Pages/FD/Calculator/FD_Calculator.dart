@@ -59,7 +59,7 @@ class _FD_CalculatorState extends State<FD_Calculator> {
               width: 15.0,
             ),
             Text(
-              'Add New F.D.',
+              'Calculate F.D.',
             ),
             GestureDetector(
               onTap: () {

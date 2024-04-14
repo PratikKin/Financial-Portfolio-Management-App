@@ -1,9 +1,9 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mone_age/MainPages/Settings.dart';
+import 'package:mone_age/MainPages/Settings/Settings.dart';
 
-import 'MainPages/HomePage.dart';
+import 'MainPages/HomePage/HomePage.dart';
 import 'Portfolio_Pages/portfolio_page.dart';
 
 class BasePage extends StatefulWidget {
@@ -19,10 +19,10 @@ class _BasePageState extends State<BasePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: _getBody(_currentIndex),
       bottomNavigationBar: ConvexAppBar(
-        backgroundColor: Color(0xff0F37AD),
+        elevation: 15.0,
+        backgroundColor: Color(0xff1c242e),
         color: Colors.white,
         style: TabStyle.reactCircle,
         items: [
@@ -53,14 +53,14 @@ class _BasePageState extends State<BasePage> {
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Icon(
-                  FontAwesomeIcons.user,
-                  color: Colors.white,
-                ),
-              )
+                  padding: const EdgeInsets.all(18.0),
+                  child: Icon(
+                    FontAwesomeIcons.user,
+                    color: Colors.white,
+                  ))
             ],
-            backgroundColor: Color(0xff0F37AD),
+            // backgroundColor: Color(0xff0F37AD),
+            backgroundColor: Color(0xff1c242e),
           ),
           body: HomePage(),
         );
@@ -82,12 +82,12 @@ class _BasePageState extends State<BasePage> {
                 ),
               )
             ],
-            backgroundColor: Color(0xff0F37AD),
+            backgroundColor: Color(0xff1c242e),
           ),
           body: MainP_Pages(),
         );
       case 2:
-        return Settigns();
+        return Settings();
       default:
         return Container(
           child: Text(

@@ -28,8 +28,6 @@ class _MainP_PagesState extends State<MainP_Pages>
     super.dispose();
   }
 
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,20 +62,19 @@ class _MainP_PagesState extends State<MainP_Pages>
                 bottomLeft: Radius.circular(8.0),
                 bottomRight: Radius.circular(8.0),
               ),
-              color: Color(0xff0F37AD),
+              // color: Color(0xff0fad76),
+              color: Color(0xff1c242e),
             ),
           ),
         ),
       ),
-      body: Expanded(
-        child: TabBarView(
-          controller: _tabBarController,
-          children: [
-            FD(),
-            Stocks(),
-            RE(),
-          ],
-        ),
+      body: TabBarView(
+        controller: _tabBarController,
+        children: [
+          FD(),
+          Stocks(),
+          RE(),
+        ],
       ),
     );
   }
