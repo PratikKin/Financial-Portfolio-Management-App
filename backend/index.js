@@ -14,9 +14,12 @@ app.use(cors());
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const UserRouter = require('./routes/User')
+const UserRouter = require('./routes/User');
+const FdRouter = require('./routes/fd');
 
 app.use('/user', UserRouter);
+app.use('/user', FdRouter);
+
 
 const hostname = '0.0.0.0'; 
 const port = process.env.PORT || 5000;

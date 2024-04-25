@@ -2,13 +2,13 @@ const bcrypt = require("bcrypt");  // password handler uses to encrypt/decrypt p
 // const randomString = require("randomstring");
 
 // user model for mongodb
-const User = require('./../models/User')
+const User = require('../models/user/User')
 
 //user verification model
-const UserVerification = require('./../models/UserVerification');
+const UserVerification = require('../models/user/UserVerification');
 
 //user verification model
-const PasswordReset = require('./../models/PasswordReset');
+const PasswordReset = require('../models/user/PasswordReset');
 
 // email handler-- use to send email to application
 const nodemailer = require('nodemailer');

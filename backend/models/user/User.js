@@ -15,8 +15,11 @@ const UserSchema = new Schema({
         type:String,
         require:true
     },
-    // dob:Date,
     verified:Boolean,
+    fds:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"FD"
+    }]
 })
 
 const User = mongoose.model('User', UserSchema);
