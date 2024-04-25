@@ -2,13 +2,13 @@ const bcrypt = require("bcrypt");  // password handler uses to encrypt/decrypt p
 // const randomString = require("randomstring");
 
 // user model for mongodb
-const User = require('./../models/User')
+const User = require('../models/user/User')
 
 //user verification model
-const UserVerification = require('./../models/UserVerification');
+const UserVerification = require('../models/user/UserVerification');
 
 //user verification model
-const PasswordReset = require('./../models/PasswordReset');
+const PasswordReset = require('../models/user/PasswordReset');
 
 // email handler-- use to send email to application
 const nodemailer = require('nodemailer');
@@ -21,7 +21,7 @@ require("dotenv").config();
 
 //path for static verified page;
 const path = require("path");
-const { PassThrough } = require("nodemailer/lib/xoauth2");
+// const { PassThrough } = require("nodemailer/lib/xoauth2");
 
 // nodemailer transporter
 let transporter = nodemailer.createTransport({
@@ -47,17 +47,8 @@ exports.getUser =(req, res, next)=>{
     let name = req.body.name;
     let email = req.body.email;
     let password = req.body.password;
-    let dob = req.body.dob;
-    let confirmPassword= req.body.confirmPassword;
 
-    name = name.trim();
-    email = email.trim();
-    password = password.trim();
-    confirmPassword = confirmPassword.trim();
-    dob = dob.trim();
-    
-
-    if(name == "" || email == ""|| password == "" || dob ==""){
+    if(name == "" || email == ""|| password == ""){
         res.json({
             status:"Failed",
             message:"Empty input field"
@@ -67,26 +58,13 @@ exports.getUser =(req, res, next)=>{
             status:"Failed",
             message:"Invalid name is entered"
         })
-    }else if(!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
-        res.json({
-            status:"Failed",
-            message:"Invalid email is entered"
-        })
-    }else if(!new Date(dob).getTime()){
-        res.json({
-            status:"Failed",
-            message:"Invalid date of birth is entered"
-        })
-    }else if(password<8){
+    }
+    else if(password<8){
         res.json({
             message:"Password Must be 8 character"
         })
-    }else if(password != confirmPassword){
-        res.json({
-            status:"Failed",
-            message:"Password do not match"
-        })
-    }else{
+    }
+    else{
         //checking user already exits
         User.find({email}).then((result)=>{
             if(result.length){
@@ -103,17 +81,12 @@ exports.getUser =(req, res, next)=>{
                         name,
                         email,
                         password:hashpassword,
-                        dob,
+                        // dob,
                         verified:false
                     })
 
                     newUser.save().then(result =>{
-                        // handle verification email
                         sendVerificationEmail(result, res)
-                        // res.status(200).json({
-                        //     message:"SigUp Successfully",
-                        //     data:result
-                        // })
                     })
                     .catch(err => {
                         console.log(err)
@@ -143,7 +116,7 @@ exports.getUser =(req, res, next)=>{
 // send verification Email
 const sendVerificationEmail = ({_id, email},res)=>{
     // url to be used in email
-    const currentUrl = "http://localhost:5000/";
+    const currentUrl = "http://10.0.12.188:5000/";
 
     const uniqueString = uuidv4() + _id;
 
@@ -423,9 +396,6 @@ exports.getNewPassword = (req,res, nest)=>{
 exports.logInUser =(req, res, next)=>{
     let email = req.body.email;
     let password = req.body.password;
-
-    email = email.trim();
-    password = password.trim();
 
     if(email == "" || password == ""){
         res.json({
