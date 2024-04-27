@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mone_age/Portfolio_Pages/Stocks/Components/stocksPage.dart';
 
 import 'Backend/Authentication Manager/AuthManager.dart';
 import 'BasePage.dart';
@@ -45,6 +45,7 @@ class MoneAge extends StatelessWidget {
         fontFamily: "Poppins",
       ),
 
+      /*
       home: FutureBuilder(
         future: AuthManager().isLoggedIn(),
         builder: (context, AsyncSnapshot<bool> snapshot) {
@@ -69,12 +70,13 @@ class MoneAge extends StatelessWidget {
           }
         },
       ),
-
-      // home: HomePage(),
-
+      */
+      home: StockPage(
+        stockName: "sdnf",
+        stockSym: "dfhg",
+        change: 2.028,
+      ),
       debugShowCheckedModeBanner: false,
-      // home: FD_Calculator(),
-      // initialRoute: "SignUp",
       routes: {
         "Base": (route) => BasePage(),
         "SignIn": (route) => SignIn(),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mone_age/Backend/FD.dart';
 import 'package:mone_age/Portfolio_Pages/FD/Components/fdPageComponent.dart';
+import 'package:mone_age/Portfolio_Pages/FD/Components/updateFD.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
@@ -18,6 +19,8 @@ class FDCardPage extends StatefulWidget {
   final String matureDate;
   final String frequency;
   final double totalAmt;
+  final String notes;
+
   const FDCardPage(
       {super.key,
       required this.bankName,
@@ -28,7 +31,8 @@ class FDCardPage extends StatefulWidget {
       required this.frequency,
       required this.totalAmt,
       required this.fdName,
-      required this.fdId});
+      required this.fdId,
+      required this.notes});
 
   @override
   State<FDCardPage> createState() => _FDCardPageState();
@@ -48,9 +52,9 @@ class _FDCardPageState extends State<FDCardPage> {
           Bank_Name: dataList[i]['bankName'],
           InvestedAmt: dataList[i]['amountdeposited'],
           increment: dataList[i]['IR'],
-          investDate: dataList[i]['investedDate'].substring(0, 10),
+          investDate: dataList[i]['investedDate'],
           totalReturn: dataList[i]['totalAmount'],
-          matureDate: dataList[i]['maturityDate'].substring(0, 10),
+          matureDate: dataList[i]['maturityDate'],
           notes: dataList[i]['notes'],
           fdId: dataList[i]['_id'],
         ));
@@ -130,8 +134,8 @@ class _FDCardPageState extends State<FDCardPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Expanded(
-                      child:
-                          fdComponent("Invested Date", "${widget.investDate}"),
+                      child: fdComponent("Invested Date",
+                          "${widget.investDate.substring(0, 10)}"),
                     ),
                     Container(
                       width: 0.5,
@@ -139,8 +143,8 @@ class _FDCardPageState extends State<FDCardPage> {
                       color: Colors.grey,
                     ),
                     Expanded(
-                        child: fdComponent(
-                            "Maturity Date", "${widget.matureDate}")),
+                        child: fdComponent("Maturity Date",
+                            "${widget.matureDate.substring(0, 10)}")),
                   ],
                 ),
                 Padding(
@@ -174,7 +178,18 @@ class _FDCardPageState extends State<FDCardPage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showUpdateFD(
+                    context,
+                    widget.fdId,
+                    widget.fdName,
+                    widget.bankName,
+                    widget.investedAmt,
+                    widget.interestRate,
+                    widget.investDate,
+                    widget.matureDate,
+                    widget.notes);
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.4,
                 height: 52,
@@ -200,11 +215,11 @@ class _FDCardPageState extends State<FDCardPage> {
             GestureDetector(
               onTap: () async {
                 success = await fd.deleteFD(widget.fdId);
-                FD_List.value.clear();
-                dynamic data = await fd.getAllFD();
 
-                updateList(data);
                 if (success == true) {
+                  FD_List.value.clear();
+                  dynamic data = await fd.getAllFD();
+                  updateList(data);
                   Navigator.pop(context);
                   QuickAlert.show(
                     context: context,

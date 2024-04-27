@@ -54,6 +54,8 @@ dependencies:
   flutter_simple_candlesticks:
   quickalert:
   carousel_slider:
+  path_provider:
+  count_stepper:
 
 dev_dependencies:
   flutter_test:

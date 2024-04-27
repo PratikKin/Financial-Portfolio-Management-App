@@ -6,6 +6,7 @@ class stocksCard extends StatefulWidget {
   final String stockSymbol;
   final double InvestedAmt;
   final double increment;
+
   const stocksCard(
       {super.key,
       required this.stockName,
@@ -20,6 +21,7 @@ class stocksCard extends StatefulWidget {
 class _stocksCardState extends State<stocksCard> {
   late Color color1;
   late Color color2;
+
   // Color c = Color(0xffff3400);
 
   @override
@@ -122,7 +124,7 @@ class _stocksCardState extends State<stocksCard> {
                               Icon(
                                 (widget.increment > 0.0)
                                     ? CupertinoIcons.arrow_up_right
-                                    : CupertinoIcons.arrow_down_left,
+                                    : CupertinoIcons.arrow_down_right,
                                 color: (widget.increment > 0.0)
                                     ? Colors.greenAccent
                                     : Colors.redAccent,

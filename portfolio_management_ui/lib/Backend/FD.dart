@@ -92,7 +92,7 @@ class FixedDeposit {
     final Uri uri = Uri.parse('$baseUrl/user/$userId/fds/$fdId');
 
     try {
-      final http.Response response = await http.get(
+      final http.Response response = await http.delete(
         uri,
         headers: {
           'Content-Type': 'application/json',
@@ -110,6 +110,51 @@ class FixedDeposit {
       print('Error: $e');
       return false;
     }
-    return false;
+  }
+
+  Future<bool> updateFD(
+      String fdId,
+      String fdName,
+      String bankName,
+      int amountDeposited,
+      double ir,
+      String investDate,
+      String matureDate,
+      double totalAmt,
+      String notes) async {
+    final userId = await storage.read(key: userIdKey);
+    final Uri uri = Uri.parse('$baseUrl/user/$userId/fds/$fdId');
+
+    final Map<String, dynamic> postData = {
+      "fdName": fdName,
+      "bankName": bankName,
+      "amountdeposited": amountDeposited,
+      "IR": ir,
+      "investedDate": investDate,
+      "maturityDate": matureDate,
+      "totalAmount": totalAmt,
+      "notes": notes
+    };
+
+    final String postBody = jsonEncode(postData);
+
+    try {
+      final http.Response response = await http.put(uri,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: postBody);
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        Map<String, dynamic> responseBody = jsonDecode(response.body);
+        print(response.body);
+        return responseBody['success'];
+      } else {
+        print('Error: ${response.statusCode} - ${response.body}');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
   }
 }

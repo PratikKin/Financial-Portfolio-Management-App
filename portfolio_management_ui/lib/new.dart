@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:candlesticks/candlesticks.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -28,21 +28,22 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<List<Candle>> fetchCandles() async {
-    try {
-      // Read the JSON file from assets
-      String jsonString = await rootBundle.loadString('assets/data.json');
-      // Parse the JSON string
-      List<dynamic> jsonData = jsonDecode(jsonString);
-      // Map JSON data to Candle objects
-      List<Candle> candles = jsonData.map((e) => Candle.fromJson(e)).toList();
-      // Reverse the list of candles
-      candles = candles.reversed.toList();
-      return candles;
-    } catch (e) {
-      // Error handling if file reading or JSON parsing fails
-      print('Error fetching candles: $e');
-      return [];
+    final uri = Uri.parse(
+        "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SBIN.BSE&interval=5min&apikey=UQAE6H59OZ7DSGUH&outputsize=full");
+    final res = await http.get(uri);
+    dynamic jsonData = jsonDecode(res.body);
+    final Map<String, dynamic> body = jsonData['Time Series (Daily)'];
+    List<String> dates = body.keys.toList();
+    for (int i = 0; i < body.length; i++) {
+      candles.add(Candle(
+          date: dates[i] as DateTime,
+          high: body[i]['high'],
+          low: body[i]['low'],
+          open: body[i]['open'],
+          close: body[i]['close'],
+          volume: body[i]['volume']));
     }
+    return [];
   }
 
   @override

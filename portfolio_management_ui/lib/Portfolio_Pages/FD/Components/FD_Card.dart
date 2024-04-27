@@ -14,6 +14,7 @@ class FD_Card extends StatefulWidget {
   final String frequency;
   final double totalReturn;
   final String notes;
+
   const FD_Card({
     super.key,
     required this.FD_Name,
@@ -34,6 +35,7 @@ class FD_Card extends StatefulWidget {
 
 class _FD_CardState extends State<FD_Card> {
   Color c1 = Color(0xff132a3b);
+
   // Color c2 = Color(0xff14192d);
   Color c2 = Color(0xff103852);
 
@@ -56,6 +58,7 @@ class _FD_CardState extends State<FD_Card> {
                 matureDate: widget.matureDate,
                 frequency: widget.frequency,
                 totalAmt: widget.totalReturn,
+                notes: widget.notes,
               ),
             ),
           );
