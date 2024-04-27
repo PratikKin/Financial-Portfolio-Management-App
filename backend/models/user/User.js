@@ -16,9 +16,27 @@ const UserSchema = new Schema({
         require:true
     },
     verified:Boolean,
+    wallet:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Wallet",
+    },
     fds:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"FD"
+    }],
+    stocks:[{
+        stock:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Stock"
+        },
+        quantity:{
+            type:Number,
+            require:true
+        },
+        buyPrice:{
+            type:Number,
+            required:true
+        }
     }]
 })
 
