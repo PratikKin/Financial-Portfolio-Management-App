@@ -130,7 +130,7 @@ exports.getUser = async (req, res, next) => {
 // send verification Email
 const sendVerificationEmail = ({ _id, email }, res) => {
   // url to be used in email
-  const currentUrl = "http://10.0.12.188:5000/";
+  const currentUrl = "http://10.0.1.211:5000/";
 
   const uniqueString = uuidv4() + _id;
 
@@ -422,7 +422,7 @@ exports.getNewPassword = (req, res, nest) => {
 exports.logInUser = (req, res, next) => {
   let email = req.body.email;
   let password = req.body.password;
-
+  
   if (email == "" || password == "") {
     res.json({
       status: "Failed",

@@ -6,10 +6,10 @@ const mongoose = require('mongoose');
 exports.buyStock = async (req, res, next) => {
     try {
       const { userId, quantity, price, name, symbol } = req.body;
-  
+
       // Find the user by userId
       const user = await User.findById(userId).populate('wallet');
-  
+
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
@@ -20,7 +20,7 @@ exports.buyStock = async (req, res, next) => {
       const totalCost = quantity * price;
   
       if (wallet.balance < totalCost) {
-        return res.status(400).json({ error: 'Insufficient balance' });
+        return res.status(400).json({ success:false,error: 'Insufficient balance' });
       }
 
     // Deduct totalCost from wallet balance
@@ -50,7 +50,7 @@ exports.buyStock = async (req, res, next) => {
       // Save the user with updated stocks array
       await user.save();
   
-      res.status(200).json({ message: 'Stock purchased successfully' });
+      res.status(200).json({ success:true,message: 'Stock purchased successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
@@ -70,10 +70,10 @@ exports.buyStock = async (req, res, next) => {
         const user = await User.findById(userId).populate('stocks.stock');
 
         if (!user) {
-            return res.status(404).json({ error: 'User not found' });
+            return res.status(404).json({ error: 'User not found' })
         }
 
-        // Extract the populated stocks from the user object
+        // Extract the populated stocks from the user objec
         const userStocks = user.stocks;
 
         res.status(200).json({ success: true, data: userStocks });
@@ -135,7 +135,7 @@ exports.sellStock = async (req, res, next) => {
         await stockToSell.save();
         await user.save();
 
-        res.status(200).json({ message: 'Stock sold successfully' });
+        res.status(200).json({ success:true,message: 'Stock sold successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });

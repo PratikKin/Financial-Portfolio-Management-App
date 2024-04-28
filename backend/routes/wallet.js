@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const { getUserWallet} = require("../controller/wallet");
 
-router
 
-module.exports = router;
+router.get("/:userId/wallet", getUserWallet);
+
+module.exports = router;    
