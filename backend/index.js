@@ -16,9 +16,13 @@ app.use(bodyParser.json());
 
 const UserRouter = require('./routes/User');
 const FdRouter = require('./routes/fd');
+const StockRouter = require('./routes/Stock')
+const WalletRouter = require('./routes/wallet')
 
 app.use('/user', UserRouter);
 app.use('/user', FdRouter);
+app.use('/user', StockRouter)
+app.use('/user', WalletRouter)
 
 
 const hostname = '0.0.0.0'; 
